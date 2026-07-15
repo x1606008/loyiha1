@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}IT Online - Biz haqimizda{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Biz haqimizda</h4>
+        <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Bosh sahifa</a></li>
+            <li class="breadcrumb-item active text-primary">Biz haqimizda</li>
+        </ol>
+    </div>
+</div>
+
+<div class="container-fluid bg-light about py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-item-content bg-white rounded p-5 h-100">
+                    <h4 class="text-primary">Biz haqimizda</h4>
+                    <h1 class="display-4 mb-4">IT sohasida sifatli ta'lim</h1>
+                    <p>IT Online 2020-yildan beri O'zbekistonda IT ta'lim sohasida faoliyat ko'rsatmoqda. Bizning maqsadimiz - har bir insonga zamonaviy texnologiyalarni o'rganish imkonini berish.</p>
+                    <p>Bizning jamoamiz tajribali dasturchilar, dizaynerlar va IT mutaxassislaridan tashkil topgan. Har bir o'qituvchi o'z sohasida kamida 5 yillik tajribaga ega.</p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>Professional va tajribali o'qituvchilar</p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>Amaliyotga asoslangan o'quv dasturlari</p>
+                    <p class="text-dark mb-4"><i class="fa fa-check text-primary me-3"></i>Sertifikat va ish topishda yordam</p>
+                </div>
+            </div>
+            <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="bg-white rounded p-5 h-100">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-12">
+                            <div class="rounded bg-light">
+                                <img src="{% static 'img/about-1.png' %}" class="img-fluid rounded w-100" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">{{ total_courses }}</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Kurslar</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">{{ total_teachers }}</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">O'qituvchilar</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">500</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Talabalar</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">{{ total_categories }}</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Yo'nalishlar</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid team py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">O'qituvchilar</h4>
+            <h1 class="display-4 mb-4">Bizning professional jamoamiz bilan tanishing</h1>
+            <p class="mb-0">Har bir o'qituvchi o'z sohasida yuqori darajada tajribaga ega professional mutaxassis.</p>
+        </div>
+        <div class="row g-4">
+            {% for teacher in teachers %}
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                <div class="team-item">
+                    <div class="team-img">
+                        {% if teacher.photo %}
+                        <img src="{{ teacher.photo.url }}" class="img-fluid rounded-top w-100" alt="">
+                        {% else %}
+                        <img src="{% static 'img/team-' %}{{ forloop.counter }}.jpg" class="img-fluid rounded-top w-100" alt="">
+                        {% endif %}
+                        <div class="team-icon">
+                            {% if teacher.facebook %}<a class="btn btn-primary btn-sm-square rounded-pill mb-2" href="{{ teacher.facebook }}"><i class="fab fa-facebook-f"></i></a>{% endif %}
+                            {% if teacher.twitter %}<a class="btn btn-primary btn-sm-square rounded-pill mb-2" href="{{ teacher.twitter }}"><i class="fab fa-twitter"></i></a>{% endif %}
+                            {% if teacher.linkedin %}<a class="btn btn-primary btn-sm-square rounded-pill mb-2" href="{{ teacher.linkedin }}"><i class="fab fa-linkedin-in"></i></a>{% endif %}
+                            {% if teacher.instagram %}<a class="btn btn-primary btn-sm-square rounded-pill mb-0" href="{{ teacher.instagram }}"><i class="fab fa-instagram"></i></a>{% endif %}
+                        </div>
+                    </div>
+                    <div class="team-title p-4">
+                        <h4 class="mb-0">{{ teacher.name }}</h4>
+                        <p class="mb-0">{{ teacher.profession }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted fs-5">O'qituvchilar hali qo'shilmagan.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

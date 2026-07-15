@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}IT Online - Bosh sahifa{% endblock %}
+
+{% block content %}
+<div class="header-carousel owl-carousel">
+    <div class="header-carousel-item bg-primary">
+        <div class="carousel-caption">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-7 animated fadeInLeft">
+                        <div class="text-sm-center text-md-start">
+                            <h4 class="text-white text-uppercase fw-bold mb-4">IT Online ga xush kelibsiz</h4>
+                            <h1 class="display-1 text-white mb-4">Kelajagingizni IT sohasida quring!</h1>
+                            <p class="mb-5 fs-5">Zamonaviy dasturlash tillarini, veb-dizaynni va sun'iy intellektni professional o'qituvchilar bilan birga o'rganing.</p>
+                            <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                                <a class="btn btn-light rounded-pill py-3 px-4 px-md-5 me-2" href="{% url 'course_list' %}"><i class="fas fa-play-circle me-2"></i> Kurslarni ko'rish</a>
+                                <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="{% url 'about' %}">Batafsil</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 animated fadeInRight">
+                        <div class="calrousel-img" style="object-fit: cover;">
+                            <img src="{% static 'img/carousel-2.png' %}" class="img-fluid w-100" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-carousel-item bg-primary">
+        <div class="carousel-caption">
+            <div class="container">
+                <div class="row gy-4 gy-lg-0 gx-0 gx-lg-5 align-items-center">
+                    <div class="col-lg-5 animated fadeInLeft">
+                        <div class="calrousel-img">
+                            <img src="{% static 'img/carousel-2.png' %}" class="img-fluid w-100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 animated fadeInRight">
+                        <div class="text-sm-center text-md-end">
+                            <h4 class="text-white text-uppercase fw-bold mb-4">IT Online bilan o'rganing</h4>
+                            <h1 class="display-1 text-white mb-4">Dasturlash olamiga qadam qo'ying!</h1>
+                            <p class="mb-5 fs-5">Python, JavaScript, React va boshqa ko'plab texnologiyalarni amaliyot orqali o'rganing.</p>
+                            <div class="d-flex justify-content-center justify-content-md-end flex-shrink-0 mb-4">
+                                <a class="btn btn-light rounded-pill py-3 px-4 px-md-5 me-2" href="{% url 'course_list' %}"><i class="fas fa-play-circle me-2"></i> Boshlash</a>
+                                <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="{% url 'contact' %}">Bizga yozing</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-light about py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-item-content bg-white rounded p-5 h-100">
+                    <h4 class="text-primary">Biz haqimizda</h4>
+                    <h1 class="display-4 mb-4">IT ta'limda ishonchli hamkor</h1>
+                    <p>IT Online - bu zamonaviy axborot texnologiyalari sohasida professional ta'lim berishga ixtisoslashgan onlayn platforma. Bizning maqsadimiz - har bir insonga sifatli IT ta'limni qulay va mavjud qilish.</p>
+                    <p>Bizning tajribali o'qituvchilar jamoasi sizga dasturlash, veb-dasturlash, mobil ilovalar yaratish va sun'iy intellekt kabi yo'nalishlarda yordam beradi.</p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>Professional o'qituvchilar</p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>Amaliyotga asoslangan darslar</p>
+                    <p class="text-dark mb-4"><i class="fa fa-check text-primary me-3"></i>Sertifikat beriladi</p>
+                    <a class="btn btn-primary rounded-pill py-3 px-5" href="{% url 'about' %}">Batafsil</a>
+                </div>
+            </div>
+            <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="bg-white rounded p-5 h-100">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-12">
+                            <div class="rounded bg-light">
+                                <img src="{% static 'img/about-1.png' %}" class="img-fluid rounded w-100" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">{{ total_courses|default:"20" }}</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Kurslar</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">{{ total_teachers|default:"10" }}</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">O'qituvchilar</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">500</span>
+                                    <span class="h1 fw-bold text-primary">+</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Talabalar</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="counter-item bg-light rounded p-3 h-100">
+                                <div class="counter-counting">
+                                    <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">98</span>
+                                    <span class="h1 fw-bold text-primary">%</span>
+                                </div>
+                                <h4 class="mb-0 text-dark">Muvaffaqiyat</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">Yo'nalishlar</h4>
+            <h1 class="display-4 mb-4">Biz quyidagi yo'nalishlarni taklif etamiz</h1>
+            <p class="mb-0">IT sohasining eng talab qilinadigan yo'nalishlari bo'yicha professional kurslar.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% for course in courses %}
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                <div class="service-item">
+                    <div class="service-img">
+                        {% if course.image %}
+                        <img src="{{ course.image.url }}" class="img-fluid rounded-top w-100" alt="">
+                        {% else %}
+                        <img src="{% static 'img/blog-1.png' %}" class="img-fluid rounded-top w-100" alt="">
+                        {% endif %}
+                        <div class="service-icon p-3">
+                            <i class="fa fa-laptop-code fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="service-content p-4">
+                        <div class="service-content-inner">
+                            <a href="{% url 'course_detail' course.slug %}" class="d-inline-block h4 mb-4">{{ course.title }}</a>
+                            <p class="mb-4">{{ course.short_description|truncatewords:15 }}</p>
+                            <a class="btn btn-primary rounded-pill py-2 px-4" href="{% url 'course_detail' course.slug %}">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted fs-5">Kurslar hali qo'shilmagan. Admin panel orqali kurslarni qo'shing.</p>
+            </div>
+            {% endfor %}
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <a class="btn btn-primary rounded-pill py-3 px-5" href="{% url 'course_list' %}">Barcha kurslar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid team py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">O'qituvchilar</h4>
+            <h1 class="display-4 mb-4">Bizning professional jamoamiz bilan tanishing</h1>
+            <p class="mb-0">Tajribali va professional o'qituvchilar sizga IT sohasida yordam berishga tayyor.</p>
+        </div>
+        <div class="row g-4">
+            {% for teacher in teachers %}
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                <div class="team-item">
+                    <div class="team-img">
+                        {% if teacher.photo %}
+                        <img src="{{ teacher.photo.url }}" class="img-fluid rounded-top w-100" alt="">
+                        {% else %}
+                        <img src="{% static 'img/team-1.jpg' %}" class="img-fluid rounded-top w-100" alt="">
+                        {% endif %}
+                        <div class="team-icon">
+                            {% if teacher.facebook %}<a class="btn btn-primary btn-sm-square rounded-pill mb-2" href="{{ teacher.facebook }}"><i class="fab fa-facebook-f"></i></a>{% endif %}
+                            {% if teacher.twitter %}<a class="btn btn-primary btn-sm-square rounded-pill mb-2" href="{{ teacher.twitter }}"><i class="fab fa-twitter"></i></a>{% endif %}
+                            {% if teacher.linkedin %}<a class="btn btn-primary btn-sm-square rounded-pill mb-2" href="{{ teacher.linkedin }}"><i class="fab fa-linkedin-in"></i></a>{% endif %}
+                            {% if teacher.instagram %}<a class="btn btn-primary btn-sm-square rounded-pill mb-0" href="{{ teacher.instagram }}"><i class="fab fa-instagram"></i></a>{% endif %}
+                        </div>
+                    </div>
+                    <div class="team-title p-4">
+                        <h4 class="mb-0">{{ teacher.name }}</h4>
+                        <p class="mb-0">{{ teacher.profession }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted fs-5">O'qituvchilar hali qo'shilmagan.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid py-5" style="background-color: var(--bg-secondary);">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary"><i class="fas fa-trophy me-2"></i> Top O'quvchilar</h4>
+            <h1 class="display-4 mb-4">Eng yaxshi natijalar ko'rsatgan o'quvchilarimiz</h1>
+            <p class="mb-0">Kurslarimizni muvaffaqiyatli tamomlab, sohada katta yutuqlarga erishgan o'quvchilarimiz bilan faxrlanamiz!</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% for student in top_students %}
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                <div class="student-card rounded-4 overflow-hidden h-100 text-center" style="background-color: var(--bg-card);">
+                    <div class="p-4">
+                        <div class="position-relative d-inline-block mb-3">
+                            {% if student.photo %}
+                            <img src="{{ student.photo.url }}" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" alt="{{ student.name }}">
+                            {% else %}
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 100px; height: 100px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; font-size: 2.2rem; font-weight: bold;">
+                                {{ student.name|first }}
+                            </div>
+                            {% endif %}
+                            <span class="position-absolute top-0 start-50 translate-middle badge {% if student.rating == 1 %}badge-gold{% elif student.rating == 2 %}badge-silver{% else %}badge-bronze{% endif %} rounded-pill px-3 py-2">
+                                {% if student.rating == 1 %}<i class="fas fa-trophy"></i>{% elif student.rating == 2 %}<i class="fas fa-medal"></i>{% else %}<i class="fas fa-award"></i>{% endif %}
+                            </span>
+                        </div>
+                        <h4 class="mb-1">{{ student.name }}</h4>
+                        <p class="text-primary mb-1 fw-bold">{{ student.profession }}</p>
+                        {% if student.company %}
+                        <p class="mb-2" style="color: var(--text-muted); font-size: 0.85rem;"><i class="fas fa-building me-1"></i> {{ student.company }}</p>
+                        {% endif %}
+                        {% if student.quote %}
+                        <p class="fst-italic mb-0" style="color: var(--text-secondary); font-size: 0.88rem;">"{{ student.quote|truncatewords:10 }}"</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted fs-5">Top o'quvchilar hali qo'shilmagan. Admin panel orqali qo'shing.</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% if top_students %}
+        <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.3s">
+            <a class="btn btn-primary rounded-pill py-3 px-5" href="{% url 'student_list' %}"><i class="fas fa-user-graduate me-2"></i> Barcha o'quvchilarni ko'rish</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}IT Online - Kurslar{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Kurslarimiz</h4>
+        <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Bosh sahifa</a></li>
+            <li class="breadcrumb-item active text-primary">Kurslar</li>
+        </ol>
+    </div>
+</div>
+
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">Kurslar</h4>
+            <h1 class="display-4 mb-4">Barcha kurslarimiz bilan tanishing</h1>
+            <p class="mb-0">IT sohasining eng talab qilinadigan yo'nalishlari bo'yicha kurslar.</p>
+        </div>
+
+        <div class="mb-4 text-center wow fadeInUp" data-wow-delay="0.1s">
+            <a href="{% url 'course_list' %}" class="btn {% if not active_category %}btn-primary{% else %}btn-outline-primary{% endif %} rounded-pill py-2 px-4 me-2">Barchasi</a>
+            {% for cat in categories %}
+            <a href="{% url 'course_list' %}?category={{ cat.slug }}" class="btn {% if active_category == cat.slug %}btn-primary{% else %}btn-outline-primary{% endif %} rounded-pill py-2 px-4 me-2">{{ cat.name }}</a>
+            {% endfor %}
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            {% for course in courses %}
+            <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                <div class="service-item">
+                    <div class="service-img">
+                        {% if course.image %}
+                        <img src="{{ course.image.url }}" class="img-fluid rounded-top w-100" alt="">
+                        {% else %}
+                        <img src="{% static 'img/blog-' %}{{ forloop.counter|add:0 }}.png" class="img-fluid rounded-top w-100" alt="">
+                        {% endif %}
+                        <div class="service-icon p-3">
+                            <i class="fa fa-laptop-code fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="service-content p-4">
+                        <div class="service-content-inner">
+                            <a href="{% url 'course_detail' course.slug %}" class="d-inline-block h4 mb-4">{{ course.title }}</a>
+                            <p class="mb-4">{{ course.short_description|truncatewords:15 }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="{% url 'course_detail' course.slug %}">Batafsil</a>
+                                {% if course.price %}
+                                <span class="text-primary fw-bold">{{ course.price|floatformat:0 }} so'm</span>
+                                {% else %}
+                                <span class="text-success fw-bold">Bepul</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted fs-5">Kurslar hali qo'shilmagan. Admin panel orqali kurslarni qo'shing.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

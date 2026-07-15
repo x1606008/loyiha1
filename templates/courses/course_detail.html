@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}IT Online - {{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ course.title }}</h4>
+        <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Bosh sahifa</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'course_list' %}">Kurslar</a></li>
+            <li class="breadcrumb-item active text-primary">{{ course.title }}</li>
+        </ol>
+    </div>
+</div>
+
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="bg-white rounded p-5 mb-4">
+                    {% if course.image %}
+                    <img src="{{ course.image.url }}" class="img-fluid rounded w-100 mb-4" alt="">
+                    {% endif %}
+                    <h1 class="mb-4">{{ course.title }}</h1>
+                    <div class="d-flex flex-wrap mb-3">
+                        <span class="badge bg-primary me-2 mb-2"><i class="fa fa-tag me-1"></i> {{ course.category }}</span>
+                        {% if course.duration %}<span class="badge bg-secondary me-2 mb-2"><i class="fa fa-clock me-1"></i> {{ course.duration }}</span>{% endif %}
+                        {% if course.lessons_count %}<span class="badge bg-info me-2 mb-2"><i class="fa fa-book me-1"></i> {{ course.lessons_count }} ta dars</span>{% endif %}
+                        {% if course.teacher %}<span class="badge bg-success mb-2"><i class="fa fa-user me-1"></i> {{ course.teacher }}</span>{% endif %}
+                    </div>
+                    <div class="mb-4">
+                        {{ course.full_description|linebreaksbr }}
+                    </div>
+                    {% if not course.full_description %}
+                    <p>{{ course.short_description }}</p>
+                    {% endif %}
+                </div>
+
+                {% if course.lessons.all %}
+                <div class="bg-white rounded p-5">
+                    <h3 class="mb-4"><i class="fa fa-list-ol text-primary me-2"></i> Darslar ro'yxati</h3>
+                    <div class="accordion" id="lessonsAccordion">
+                        {% for lesson in course.lessons.all %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#lesson{{ lesson.id }}">
+                                    <span class="me-2 text-primary fw-bold">{{ lesson.order }}.</span> {{ lesson.title }}
+                                </button>
+                            </h2>
+                            <div id="lesson{{ lesson.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#lessonsAccordion">
+                                <div class="accordion-body">
+                                    {% if lesson.content %}
+                                    <p>{{ lesson.content|linebreaksbr }}</p>
+                                    {% endif %}
+                                    {% if lesson.video_url %}
+                                    <a href="{{ lesson.video_url }}" target="_blank" class="btn btn-primary rounded-pill py-2 px-4"><i class="fa fa-play me-2"></i> Videoni ko'rish</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bg-white rounded p-5 mb-4">
+                    <h4 class="mb-4"><i class="fa fa-info-circle text-primary me-2"></i> Kurs haqida</h4>
+                    <div class="d-flex justify-content-between py-2 border-bottom">
+                        <span>Kategoriya:</span>
+                        <span class="fw-bold">{{ course.category }}</span>
+                    </div>
+                    {% if course.duration %}
+                    <div class="d-flex justify-content-between py-2 border-bottom">
+                        <span>Davomiyligi:</span>
+                        <span class="fw-bold">{{ course.duration }}</span>
+                    </div>
+                    {% endif %}
+                    {% if course.lessons_count %}
+                    <div class="d-flex justify-content-between py-2 border-bottom">
+                        <span>Darslar soni:</span>
+                        <span class="fw-bold">{{ course.lessons_count }}</span>
+                    </div>
+                    {% endif %}
+                    {% if course.teacher %}
+                    <div class="d-flex justify-content-between py-2 border-bottom">
+                        <span>O'qituvchi:</span>
+                        <span class="fw-bold">{{ course.teacher }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="d-flex justify-content-between py-2 border-bottom">
+                        <span>Narx:</span>
+                        {% if course.price %}
+                        <span class="fw-bold text-primary">{{ course.price|floatformat:0 }} so'm</span>
+                        {% else %}
+                        <span class="fw-bold text-success">Bepul</span>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn btn-primary rounded-pill py-3 px-5 w-100 mt-4">Yozib olish</a>
+                </div>
+
+                {% if related_courses %}
+                <div class="bg-white rounded p-5">
+                    <h4 class="mb-4"><i class="fa fa-th-list text-primary me-2"></i> O'xshash kurslar</h4>
+                    {% for rc in related_courses %}
+                    <div class="d-flex mb-3">
+                        {% if rc.image %}
+                        <img src="{{ rc.image.url }}" class="rounded me-3" style="width: 80px; height: 60px; object-fit: cover;" alt="">
+                        {% else %}
+                        <img src="{% static 'img/blog-1.png' %}" class="rounded me-3" style="width: 80px; height: 60px; object-fit: cover;" alt="">
+                        {% endif %}
+                        <div>
+                            <a href="{% url 'course_detail' rc.slug %}" class="h6 d-block mb-1">{{ rc.title }}</a>
+                            <small class="text-muted">{{ rc.category }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
