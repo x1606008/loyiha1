@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-(ww_*2hi3tf3#oc&c1lcy4&k2nm+m0in5f(z(ds&*7zx+9k-fv
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['educationxea.onrender.com', '127.0.0.1', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
